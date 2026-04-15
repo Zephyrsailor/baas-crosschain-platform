@@ -21,6 +21,7 @@
 - `src/services/`：业务服务层
 - `src/iam/rbac.js`：权限控制
 - `src/data/store.js`：内存数据存储（MVP）
+- `web/`：前端 MVP 控制台（原生 HTML/CSS/JS + Node 静态服务）
 - `tests/`：服务与 API 测试
 - `docs/`：PRD、技术设计、任务拆分
 
@@ -33,6 +34,32 @@ npm start
 ```
 
 默认启动地址：`http://localhost:3300`
+
+## 启动前端 MVP 控制台
+
+前端采用最轻量的原生方案（`web/public`），并通过 `web/server.js` 代理 `/api` 到后端，避免浏览器 CORS 问题。
+
+### 1) 启动后端 API
+
+```bash
+npm start
+```
+
+### 2) 新开终端启动前端
+
+```bash
+npm run start:web
+```
+
+默认前端地址：`http://localhost:3310`
+
+可选环境变量：
+
+- `WEB_PORT`：前端端口（默认 `3310`）
+- `BACKEND_URL`：后端地址（默认 `http://localhost:3300`）
+
+页面包含：登录、上链任务、合约部署、链/节点监控、区块浏览器、DID 管理。
+默认演示账号（请求头 `x-user-id`）：`u-admin`（全权限）或 `u-ops`（部分权限）。
 
 ## 运行测试
 
